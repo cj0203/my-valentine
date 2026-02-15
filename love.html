@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+}
+
+h1 {
+    margin-top: 60px;
+    font-size: 2.6em;
+}
+
+p {
+    font-size: 1.3em;
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    line-height: 1.6em;
+}
+
+button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: #ff4b5c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#bouquet {
+    display: none;
+    font-size: 70px;
+    margin-top: 20px;
+    animation: pop 1s ease forwards;
+}
+
+@keyframes pop {
+    0% {transform: scale(0);}
+    80% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+
+/* hearts */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 8s infinite ease-in;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+
+@keyframes float {
+    0% { bottom: -10px; opacity: 1; }
+    100% { bottom: 100%; left: calc(100% * var(--random)); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>For My Love ❤️</h1>
+
+<!-- YOUR IMAGE -->
+<img src="photo.jpeg" style="width:260px; border-radius:20px; margin-top:20px; box-shadow:0 5px 15px rgba(0,0,0,0.3);">
+
+<p>
+I couldn't give you flowers on that day...  
+but one day I will buy you a whole garden 🌸🌷🌹  
+Not just on Valentine’s Day...  
+I will love you every single day of my life ❤️
+</p>
+
+<button onclick="startLove()">Click this 🌹</button>
+
+<div id="bouquet">💐</div>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startLove() {
+    // show bouquet
+    document.getElementById("bouquet").style.display = "block";
+
+    // play music AFTER click
+    var audio = document.getElementById("music");
+    audio.play();
+
+    // create hearts
+    setInterval(createHeart, 300);
+}
+
+// floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.setProperty('--random', Math.random());
+    heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}
+</script>
+
+</body>
+</html>
